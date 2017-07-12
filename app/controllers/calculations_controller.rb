@@ -80,11 +80,12 @@ class CalculationsController < ApplicationController
     @hours = @minutes/60
     
     
-    @days = 
+    @days = TimeDifference.between(@starting, @ending).in_years
     
-    #TimeDifference.between(starting, ending).in_years
     
-    @weeks = "Replace this string with your answer."
+    
+    @weeks = TimeDifference.between(@starting, @ending).in_weeks
+    
     @years = "Replace this string with your answer."
 
     # ================================================================================
