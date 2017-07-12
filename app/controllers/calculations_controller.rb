@@ -11,13 +11,20 @@ class CalculationsController < ApplicationController
     # ================================================================================
 
 
-    @word_count = "Replace this string with your answer."
+    @word_count = @text.split.size 
+    
 
-    @character_count_with_spaces = "Replace this string with your answer."
+    @character_count_with_spaces = @text.length
+    
 
-    @character_count_without_spaces = "Replace this string with your answer."
+    @character_count_without_spaces = @text.gsub(/\s+/, "").length
+    
 
-    @occurrences = "Replace this string with your answer."
+    @occurrences = @text.count("me")
+    
+    
+    
+    
 
     # ================================================================================
     # Your code goes above.
@@ -38,7 +45,7 @@ class CalculationsController < ApplicationController
     # The principal value the user input is in the decimal @principal.
     # ================================================================================
 
-    @monthly_payment = "Replace this string with your answer."
+    @monthly_payment = @apr*@principal/@years/12
 
     # ================================================================================
     # Your code goes above.
@@ -60,11 +67,25 @@ class CalculationsController < ApplicationController
     #   number of seconds as a result.
     # ================================================================================
 
-    @seconds = "Replace this string with your answer."
-    @minutes = "Replace this string with your answer."
-    @hours = "Replace this string with your answer."
-    @days = "Replace this string with your answer."
-    @weeks = "Replace this string with your answer."
+
+
+    @seconds = @ending-@starting
+    
+   
+    
+    @minutes = @seconds/60
+    
+    
+    
+    @hours = @minutes/60
+    
+    
+    @days = TimeDifference.between(@starting, @ending).in_years
+    
+    
+    
+    @weeks = TimeDifference.between(@starting, @ending).in_weeks
+    
     @years = "Replace this string with your answer."
 
     # ================================================================================
@@ -74,6 +95,8 @@ class CalculationsController < ApplicationController
     render("time_between.html.erb")
   end
 
+
+
   def descriptive_statistics
     @numbers = params[:list_of_numbers].gsub(',', '').split.map(&:to_f)
 
@@ -82,19 +105,25 @@ class CalculationsController < ApplicationController
     # The numbers the user input are in the array @numbers.
     # ================================================================================
 
-    @sorted_numbers = "Replace this string with your answer."
+    @sorted_numbers = @numbers.sort
+    
 
-    @count = "Replace this string with your answer."
+    @count = @numbers.count
+    
 
-    @minimum = "Replace this string with your answer."
+    @minimum = @numbers.min 
 
-    @maximum = "Replace this string with your answer."
+    @maximum = @numbers.max
+    
 
-    @range = "Replace this string with your answer."
+    @range = @maximum-@minimum
+    
+    
 
-    @median = "Replace this string with your answer."
+    @median = 
 
-    @sum = "Replace this string with your answer."
+    @sum = @numbers.sum
+    
 
     @mean = "Replace this string with your answer."
 
