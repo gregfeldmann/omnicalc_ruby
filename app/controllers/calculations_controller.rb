@@ -20,7 +20,7 @@ class CalculationsController < ApplicationController
     @character_count_without_spaces = @text.gsub(/\s+/, "").length
     
 
-    @occurrences = @text.count("me")
+    @occurrences = @text.count("hey")
     
     
     
@@ -80,13 +80,13 @@ class CalculationsController < ApplicationController
     @hours = @minutes/60
     
     
-    @days = TimeDifference.between(@starting, @ending).in_years
+    @days = @hours/24
     
     
     
-    @weeks = TimeDifference.between(@starting, @ending).in_weeks
+    @weeks = @days/7
     
-    @years = "Replace this string with your answer."
+    @years = @weeks/52
 
     # ================================================================================
     # Your code goes above.
@@ -125,13 +125,37 @@ class CalculationsController < ApplicationController
     @sum = @numbers.sum
     
 
-    @mean = "Replace this string with your answer."
+    @mean = @sum/@count
+    
+    
+    mean_difference = []
+      @numbers.each do |num|
+      difference = @mean-num  
+      
+      mean_difference.push(difference)
+      end
+      
+    
+    
+    squared_numbers = []
+    
+    mean_difference.each do |num|
+      
+      square = num*num
+      squared_numbers.push(square)
+    end
 
-    @variance = "Replace this string with your answer."
 
-    @standard_deviation = "Replace this string with your answer."
+    @variance = squared_numbers.sum/@count
+    
 
-    @mode = "Replace this string with your answer."
+    @standard_deviation = 
+    
+    
+  
+
+    @mode = 
+    
 
     # ================================================================================
     # Your code goes above.
